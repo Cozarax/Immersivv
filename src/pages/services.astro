@@ -1,0 +1,160 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionLabel from '@/components/ui/SectionLabel.astro';
+import ServiceCard from '@/components/services/ServiceCard.astro';
+
+const services = [
+  {
+    number: '01',
+    title: 'Développement front-end React & TypeScript',
+    description:
+      "Je construis des interfaces modernes, performantes et maintenables. Du composant à l'architecture, mon approche combine rigueur technique et sens du détail UI.",
+    items: [
+      'Composants React typés (TypeScript)',
+      'Architecture front-end scalable',
+      'Optimisation des performances (Core Web Vitals)',
+      'Code documenté et maintenable',
+      'Intégration Figma / maquettes',
+      'Tests et qualité (ESLint, Prettier, tests unitaires)',
+    ],
+    tags: ['React', 'TypeScript', 'Performance'],
+  },
+  {
+    number: '02',
+    title: 'Sites web & landing pages',
+    description:
+      'Sites vitrines, landing pages, portfolios — des expériences web qui allient un design soigné à une structure pensée pour la conversion et la lisibilité.',
+    items: [
+      'Site vitrine sur mesure',
+      'Landing page orientée conversion',
+      'Design système cohérent',
+      'Responsive, accessible, rapide',
+      'SEO technique de base',
+      'Déploiement et mise en ligne',
+    ],
+    tags: ['UX', 'Design', 'Conversion'],
+  },
+  {
+    number: '03',
+    title: 'Expériences interactives',
+    description:
+      'Animations, transitions, effets — pour des interfaces qui marquent les esprits et donnent à votre marque une présence mémorable sur le web.',
+    items: [
+      'Animations et transitions CSS / JS',
+      'Interactions sur mesure',
+      'Scroll storytelling',
+      'Effets avancés (parallaxe, morphing)',
+      'Expériences immersives web',
+      "Optimisation des performances d'animation",
+    ],
+    tags: ['Animation', 'Interactions', 'Créatif'],
+  },
+];
+
+const audiences = [
+  { label: 'Startups', desc: "Qui ont besoin d'un front-end solide pour lancer ou faire évoluer leur produit." },
+  { label: 'Studios & agences', desc: 'Qui cherchent un développeur front-end de confiance pour compléter leur équipe.' },
+  { label: 'Indépendants & marques', desc: 'Qui veulent un site web premium qui reflète la qualité de leur travail.' },
+  { label: 'PME', desc: 'Qui souhaitent moderniser leur présence web avec une vraie attention au design.' },
+];
+---
+
+<MainLayout
+  title="Services — Axel, développeur freelance React & TypeScript"
+  description="Développement front-end React/TypeScript, sites web orientés UX, et expériences interactives sur mesure."
+>
+  <!-- Hero -->
+  <section class="py-24 border-b border-border">
+    <Container>
+      <div class="reveal mb-10">
+        <SectionLabel label="Services" class="mb-8" />
+        <h1 class="font-display font-semibold text-5xl md:text-6xl lg:text-7xl text-ink leading-[1.1] max-w-[700px]">
+          Ce que je construis<br />
+          <span class="text-accent">pour vous.</span>
+        </h1>
+      </div>
+      <p class="reveal text-base text-ink-2 leading-relaxed max-w-[520px]">
+        Je traduis vos objectifs en interfaces concrètes — du front-end pur aux sites complets,
+        en passant par les expériences interactives qui sortent du lot.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Services -->
+  <section class="py-24">
+    <Container>
+      <div class="flex flex-col gap-6">
+        {services.map((service) => (
+          <ServiceCard {...service} />
+        ))}
+      </div>
+
+      <!-- Full-stack option -->
+      <div class="reveal mt-6 border border-accent/20 bg-accent/5 p-8 md:p-10">
+        <div class="flex items-start gap-4 mb-4">
+          <span class="font-mono text-2xs text-accent shrink-0 mt-0.5">+</span>
+          <div>
+            <h3 class="font-display font-semibold text-xl text-ink mb-2">
+              Option full-stack — Node.js
+            </h3>
+            <p class="text-sm text-ink-2 leading-relaxed max-w-[520px]">
+              Si votre projet nécessite une couche back-end, je peux intervenir sur des APIs
+              Node.js simples, des formulaires, des intégrations tierces ou un back-office léger —
+              pour éviter de multiplier les interlocuteurs.
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-1.5 mt-4 ml-7">
+          {['Node.js', 'REST API', 'Prisma / ORM', 'Auth', 'Back-office'].map((t) => (
+            <span class="font-mono text-2xs text-ink-3 border border-border px-2 py-1">{t}</span>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Pour qui je travaille -->
+  <section class="py-20 border-t border-border border-b">
+    <Container>
+      <div class="grid md:grid-cols-2 gap-16 items-start">
+        <div class="reveal">
+          <h2 class="font-display font-semibold text-3xl md:text-4xl text-ink leading-tight">
+            Pour qui je travaille
+          </h2>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-8">
+          {audiences.map((a, i) => (
+            <div class="reveal" style={`transition-delay: ${i * 0.08}s`}>
+              <h3 class="font-sans text-sm font-medium text-ink mb-2">{a.label}</h3>
+              <p class="text-sm text-ink-2 leading-relaxed">{a.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24">
+    <Container>
+      <div class="reveal text-center max-w-[520px] mx-auto">
+        <h2 class="font-display font-semibold text-4xl text-ink mb-6">
+          Un besoin en tête ?
+        </h2>
+        <p class="text-sm text-ink-2 leading-relaxed mb-8">
+          Décrivez-moi votre projet. Je vous reviens sous 48h pour voir si on peut travailler ensemble.
+        </p>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-3 font-sans font-medium text-sm bg-accent text-bg px-8 py-4 hover:opacity-90 transition-opacity duration-150"
+        >
+          Me contacter
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </Container>
+  </section>
+</MainLayout>

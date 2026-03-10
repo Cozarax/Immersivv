@@ -1,0 +1,53 @@
+---
+---
+
+<div class="ambient" aria-hidden="true">
+  <div class="ambient__blob ambient__blob--1"></div>
+  <div class="ambient__blob ambient__blob--2"></div>
+</div>
+
+<style>
+  .ambient {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .ambient__blob {
+    position: absolute;
+    border-radius: 50%;
+    will-change: transform;
+  }
+
+  .ambient__blob--1 {
+    width: 900px;
+    height: 900px;
+    top: -300px;
+    right: -300px;
+    background: radial-gradient(circle, rgba(78, 20, 140, 0.40) 0%, transparent 65%);
+    animation: drift-1 12s ease-in-out infinite;
+  }
+
+  .ambient__blob--2 {
+    width: 700px;
+    height: 700px;
+    bottom: -100px;
+    left: -200px;
+    background: radial-gradient(circle, rgba(157, 141, 241, 0.22) 0%, transparent 60%);
+    animation: drift-2 16s ease-in-out infinite;
+  }
+
+  @keyframes drift-1 {
+    0%, 100% { transform: translate(0, 0); }
+    33%       { transform: translate(-120px, 150px); }
+    66%       { transform: translate(80px, -100px); }
+  }
+
+  @keyframes drift-2 {
+    0%, 100% { transform: translate(0, 0); }
+    40%       { transform: translate(130px, -160px); }
+    70%       { transform: translate(-80px, 100px); }
+  }
+</style>

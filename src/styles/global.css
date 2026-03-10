@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  /* Couleurs de fond */
+  --bg: #08080A;
+  --bg-2: #0E0E11;
+  --bg-3: #16161A;
+  --bg-4: #880D1E;
+  --bg-5: #9D8DF1;  
+
+  /* Bordures */
+  --border:    #1D1D22;
+  --border-2:  #28282F;
+
+  /* Texte */
+  --ink:       #EEEBE6;
+  --ink-2:     #878380;
+  --ink-3:     #46433F;
+
+  /* Couleur principale */
+  --accent:       #9ecd04;
+  --accent-light: #b8e020;
+  --accent-dim:   #6a8a02;
+
+  /* Couleur secondaire */
+  --secondary:       #9ecd04;
+  --secondary-light: #b8e020;
+  --secondary-dim:   #6a8a02;
+
+  /* Autres couleurs */
+  --indigo:  #4E148C
+}
+
+/* ============================================
+   CLASSES UTILITAIRES CUSTOM
+   Utilisables directement dans les templates
+   ============================================ */
+@layer utilities {
+  /* Couleurs de fond */
+  .bg-bg    { background-color: rgba(8, 8, 10, 0.82); }
+  .bg-bg-2  { background-color: rgba(14, 14, 17, 0.88); }
+  .bg-bg-3  { background-color: rgba(22, 22, 26, 0.92); }
+
+  /* Bordures */
+  .border-border   { border-color: var(--border); }
+  .border-border-2 { border-color: var(--border-2); }
+
+  /* Texte */
+  .text-ink   { color: var(--ink); }
+  .text-ink-2 { color: var(--ink-2); }
+  .text-ink-3 { color: var(--ink-3); }
+
+  /* Accent */
+  .text-accent         { color: var(--accent); }
+  .text-accent-light   { color: var(--accent-light); }
+  .text-accent-dim     { color: var(--accent-dim); }
+  .bg-accent           { background-color: var(--accent); }
+  .bg-accent-light     { background-color: var(--accent-light); }
+  .border-accent       { border-color: var(--accent); }
+  .border-accent-light { border-color: var(--accent-light); }
+
+  /* Secondary */
+  .text-secondary         { color: var(--secondary); }
+  .text-secondary-light   { color: var(--secondary-light); }
+  .text-secondary-dim     { color: var(--secondary-dim); }
+  .bg-secondary           { background-color: var(--secondary); }
+  .border-secondary       { border-color: var(--secondary); }
+
+  /* Hover variants */
+  .hover\:text-accent:hover         { color: var(--accent); }
+  .hover\:text-accent-light:hover   { color: var(--accent-light); }
+  .hover\:text-secondary:hover      { color: var(--secondary); }
+  .hover\:bg-accent:hover           { background-color: var(--accent); }
+  .hover\:bg-bg-2:hover             { background-color: var(--bg-2); }
+  .hover\:border-accent:hover       { border-color: var(--accent); }
+  .hover\:border-border-2:hover     { border-color: var(--border-2); }
+  .hover\:text-ink:hover            { color: var(--ink); }
+}
+
+/* ============================================
+   BASE
+   ============================================ */
+@layer base {
+  :root { color-scheme: dark; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--bg);
+  }
+
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+}
+
+/* ============================================
+   COMPOSANTS
+   ============================================ */
+@layer components {
+  .section-label {
+    @apply font-mono text-2xs uppercase tracking-widest flex items-center gap-3;
+    color: var(--ink-3);
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background-color: var(--ink-3);
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeInUp 0.5s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   PROSE (pages projet)
+   ============================================ */
+.prose-dark { color: var(--ink-2); line-height: 1.8; }
+.prose-dark h2 {
+  color: var(--ink);
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+.prose-dark p { margin-bottom: 1.25rem; }
+.prose-dark ul { list-style: none; padding: 0; }
+.prose-dark ul li { padding-left: 1.25rem; position: relative; margin-bottom: 0.5rem; }
+.prose-dark ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }

@@ -1,0 +1,67 @@
+---
+import Container from '@/components/ui/Container.astro';
+
+const faqs = [
+  {
+    q: 'Quel est votre délai de réponse ?',
+    a: 'Je réponds aux demandes sous 24 à 48h ouvrées. Pour les projets urgents, précisez-le dans votre message.',
+  },
+  {
+    q: 'Travaillez-vous à distance ?',
+    a: 'Oui, exclusivement en remote. Je travaille avec des clients partout en France et en Europe.',
+  },
+  {
+    q: 'Quel type de missions vous convient le mieux ?',
+    a: "Je préfère les missions de fond : développement front-end sur 2 à 6 mois, création de sites web, ou intégration d'interfaces complexes. Je ne fais pas de correctifs ponctuels.",
+  },
+  {
+    q: 'Proposez-vous un accompagnement après livraison ?',
+    a: "Oui. Je propose un suivi post-livraison pour les corrections et ajustements. Les évolutions significatives font l'objet d'une nouvelle mission.",
+  },
+  {
+    q: 'Travaillez-vous avec des designers ?',
+    a: "Oui, j'intègre des maquettes Figma et collabore volontiers avec des designers. Si vous n'avez pas de designer, j'ai une sensibilité design suffisante pour construire une interface cohérente en autonomie.",
+  },
+];
+---
+
+<section class="py-20 border-t border-border">
+  <Container>
+    <div class="grid md:grid-cols-[260px_1fr] gap-16">
+      <div class="reveal">
+        <h2 class="font-display font-semibold text-3xl text-ink leading-tight">
+          Questions fréquentes
+        </h2>
+      </div>
+
+      <div class="flex flex-col">
+        {faqs.map((faq, i) => (
+          <details
+            class="reveal border-t border-border group"
+            style={`transition-delay: ${i * 0.06}s`}
+          >
+            <summary class="flex items-center justify-between gap-4 py-5 cursor-pointer list-none select-none">
+              <span class="font-sans text-sm text-ink">{faq.q}</span>
+              <span class="shrink-0 font-mono text-ink-3 group-open:text-accent text-lg leading-none transition-colors duration-150">
+                +
+              </span>
+            </summary>
+            <div class="pb-5 text-sm text-ink-2 leading-relaxed">
+              {faq.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  details[open] summary span:last-child {
+    transform: rotate(45deg);
+  }
+  details summary span:last-child {
+    transition: transform 0.15s ease;
+    display: inline-block;
+  }
+</style>

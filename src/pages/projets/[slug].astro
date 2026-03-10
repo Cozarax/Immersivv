@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from '@/layouts/MainLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import ProjectHero from '@/components/projects/ProjectHero.astro';
+import ProjectContent from '@/components/projects/ProjectContent.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+const { title, description, type, year, stack, liveUrl, repoUrl, context, objective, problem, solution, result } = project.data;
+
+// Next project
+const allProjects = await getCollection('projects');
+const sorted = allProjects.sort((a, b) => b.data.year - a.data.year);
+const currentIndex = sorted.findIndex((p) => p.slug === project.slug);
+const nextProject = sorted[(currentIndex + 1) % sorted.length];
+---
+
+<MainLayout
+  title={`${title} — Projets — Axel`}
+  description={description}
+>
+  <ProjectHero
+    title={title}
+    description={description}
+    type={type}
+    year={year}
+    stack={stack}
+    liveUrl={liveUrl}
+    repoUrl={repoUrl}
+  />
+
+  <section class="py-20">
+    <Container>
+      <!-- Structured content -->
+      <div class="mb-16">
+        <ProjectContent
+          context={context}
+          objective={objective}
+          problem={problem}
+          solution={solution}
+          result={result}
+        />
+      </div>
+
+      <!-- Long-form content if any -->
+      <div class="prose-dark max-w-[680px] mx-auto">
+        <Content />
+      </div>
+    </Container>
+  </section>
+
+  <!-- Next project -->
+  {nextProject && (
+    <section class="border-t border-border">
+      <a
+        href={`/projets/${nextProject.slug}`}
+        class="block group"
+      >
+        <Container class="py-16">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div>
+              <span class="font-mono text-2xs uppercase tracking-widest text-ink-3 mb-3 block">
+                Projet suivant
+              </span>
+              <h3 class="font-display font-normal text-3xl text-ink group-hover:text-accent transition-colors duration-300">
+                {nextProject.data.title}
+              </h3>
+            </div>
+            <div class="text-ink-3 group-hover:text-accent transition-all duration-300 group-hover:translate-x-2">
+              <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
+                <path d="M1 12h30M20 1l11 11-11 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </Container>
+      </a>
+    </section>
+  )}
+</MainLayout>

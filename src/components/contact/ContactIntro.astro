@@ -1,0 +1,63 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionLabel from '@/components/ui/SectionLabel.astro';
+---
+
+<section class="py-20 border-b border-border">
+  <Container>
+    <SectionLabel label="Contact" class="mb-10 reveal" />
+    <div class="grid md:grid-cols-2 gap-16">
+      <!-- Left: title + intro -->
+      <div class="reveal">
+        <h1 class="font-display font-semibold text-5xl md:text-6xl text-ink leading-[1.1] mb-8">
+          Discutons de<br />
+          <span class="text-accent">votre projet.</span>
+        </h1>
+        <p class="text-base text-ink-2 leading-relaxed">
+          Je suis disponible pour des missions de développement front-end, des sites web ou
+          des expériences interactives sur mesure. Décrivez-moi votre besoin et je vous
+          réponds sous 48h.
+        </p>
+      </div>
+
+      <!-- Right: direct contact block -->
+      <div class="reveal">
+        <div class="border border-border p-8">
+          <p class="section-label mb-6">Contact direct</p>
+          <div class="space-y-4">
+            <a
+              href="mailto:axel@immersivv.fr"
+              class="flex items-center gap-3 text-sm text-ink-2 hover:text-accent transition-colors duration-150 group"
+            >
+              <span class="font-mono text-2xs text-ink-3 w-16 shrink-0">Email</span>
+              <span class="group-hover:underline">axel@immersivv.fr</span>
+            </a>
+            <div class="border-t border-border pt-4">
+              <a
+                href="https://linkedin.com/in/axel"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 text-sm text-ink-2 hover:text-accent transition-colors duration-150 group"
+              >
+                <span class="font-mono text-2xs text-ink-3 w-16 shrink-0">LinkedIn</span>
+                <span class="group-hover:underline">linkedin.com/in/axel</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Availability status -->
+          <div class="border-t border-border mt-6 pt-6">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="relative flex h-2 w-2 shrink-0">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+              </span>
+              <span class="font-mono text-2xs text-ink-3 uppercase tracking-widest">Disponible</span>
+            </div>
+            <p class="text-xs text-ink-3">Pour de nouvelles missions — Remote / France</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

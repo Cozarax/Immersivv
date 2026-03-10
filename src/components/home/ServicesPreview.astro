@@ -1,0 +1,80 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionLabel from '@/components/ui/SectionLabel.astro';
+
+const services = [
+  {
+    number: '01',
+    title: 'Applications web & outils métier',
+    description:
+      'Je conçois des applications web sur mesure : dashboards, back-offices et outils internes adaptés à vos besoins métier. L’objectif est de transformer vos processus en interfaces simples, performantes et évolutives.',
+    tags: ['Applications', 'Dashboards', 'Back-offices'],
+  },
+  {
+    number: '02',
+    title: 'Sites web stratégiques',
+    description:
+      'Des sites conçus comme de véritables outils de crédibilité et de conversion. Chaque projet est pensé pour structurer votre message, rassurer vos partenaires et soutenir vos objectifs business.',
+    tags: ['Crédibilité', 'Conversion', 'Structure'],
+  },
+  {
+    number: '03',
+    title: 'Interfaces interactives',
+    description:
+      'Des interfaces dynamiques et soignées qui améliorent l’expérience utilisateur et donnent du caractère à votre produit ou votre marque.',
+    tags: ['Animation', 'Interactions', 'Web avancé'],
+  },
+];
+---
+
+<section class="py-28">
+  <Container>
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+      <div class="reveal">
+        <SectionLabel number="01" label="Services" class="mb-6" />
+        <h2 class="font-display font-semibold text-4xl md:text-5xl text-ink leading-tight">
+          Ce que je construis<br />pour vous
+        </h2>
+      </div>
+      <div class="reveal">
+        <a
+          href="/services"
+          class="inline-flex items-center gap-2 font-mono text-2xs uppercase tracking-widest text-ink-2 hover:text-accent transition-colors duration-150"
+        >
+          Voir tous les services
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+            <path d="M1 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4">
+      {services.map((service, i) => (
+        <div
+          class="reveal border border-border p-8 hover:border-accent transition-colors duration-150 group"
+          style={`transition-delay: ${i * 0.08}s`}
+        >
+          <span class="font-mono text-2xs text-accent mb-6 block">{service.number}</span>
+          <h3 class="font-display font-semibold text-xl text-ink mb-4 leading-tight">
+            {service.title}
+          </h3>
+          <p class="text-sm text-ink-2 leading-relaxed mb-6">
+            {service.description}
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {service.tags.map((tag) => (
+              <span class="font-mono text-2xs text-ink-3 border border-border px-2 py-1">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<div class="max-w-[1200px] mx-auto px-6 md:px-10">
+  <div class="border-t border-border"></div>
+</div>

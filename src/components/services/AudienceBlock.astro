@@ -1,0 +1,30 @@
+---
+import Container from '@/components/ui/Container.astro';
+
+const audiences = [
+  { label: 'Startups', desc: 'Qui ont besoin d\'un front-end solide pour lancer ou faire évoluer leur produit.' },
+  { label: 'Studios & agences', desc: 'Qui cherchent un développeur front-end de confiance pour compléter leur équipe.' },
+  { label: 'Indépendants & marques', desc: 'Qui veulent un site web premium qui reflète la qualité de leur travail.' },
+  { label: 'PME', desc: 'Qui souhaitent moderniser leur présence web avec une vraie attention au design.' },
+];
+---
+
+<section class="py-20 border-t border-border">
+  <Container>
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+      <div class="reveal">
+        <h2 class="font-display font-normal text-3xl md:text-4xl text-ink leading-tight">
+          Pour qui je travaille
+        </h2>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-6">
+        {audiences.map((a, i) => (
+          <div class="reveal" style={`transition-delay: ${i * 0.08}s`}>
+            <h3 class="font-sans text-sm font-medium text-ink mb-2">{a.label}</h3>
+            <p class="text-sm text-ink-2 leading-relaxed">{a.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Container>
+</section>

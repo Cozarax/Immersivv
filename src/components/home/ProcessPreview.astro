@@ -1,0 +1,59 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionLabel from '@/components/ui/SectionLabel.astro';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Cadrage',
+    description: 'On clarifie ensemble les objectifs, les contraintes, la cible et les indicateurs de succès.',
+  },
+  {
+    number: '02',
+    title: 'Conception',
+    description: "Structure de l'information, architecture des composants, choix UX — avant d'écrire une ligne.",
+  },
+  {
+    number: '03',
+    title: 'Développement',
+    description: 'Code propre, itérations régulières, points de synchronisation pour rester alignés.',
+  },
+  {
+    number: '04',
+    title: 'Livraison',
+    description: 'Tests, optimisations, documentation si nécessaire — et un transfert soigné.',
+  },
+];
+---
+
+<section class="py-28">
+  <Container>
+    <div class="reveal mb-16">
+      <SectionLabel number="03" label="Process" class="mb-6" />
+      <h2 class="font-display font-semibold text-4xl md:text-5xl text-ink leading-tight">
+        Comment je travaille
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {steps.map((step, i) => (
+        <div
+          class="reveal border border-border p-6 md:p-8"
+          style={`transition-delay: ${i * 0.08}s`}
+        >
+          <span class="font-mono text-2xs text-accent mb-4 block">{step.number}</span>
+          <h3 class="font-display font-semibold text-lg text-ink mb-3 leading-tight">
+            {step.title}
+          </h3>
+          <p class="text-sm text-ink-2 leading-relaxed">
+            {step.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<div class="max-w-[1200px] mx-auto px-6 md:px-10">
+  <div class="border-t border-border"></div>
+</div>

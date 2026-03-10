@@ -1,0 +1,169 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionLabel from '@/components/ui/SectionLabel.astro';
+
+const skills = [
+  { category: 'Front-end', items: ['React', 'TypeScript', 'Next.js', 'Astro', 'Tailwind CSS', 'CSS / animations'] },
+  { category: 'Back-end', items: ['Node.js', 'REST API', 'GraphQL', 'Prisma', 'PostgreSQL'] },
+  { category: 'Outils', items: ['Git / GitHub', 'Figma', 'Vite', 'Vitest', 'Vercel / Netlify'] },
+  { category: 'En exploration', items: ['Three.js', 'WebGL', 'GSAP', 'Framer Motion'] },
+];
+
+const values = [
+  {
+    title: 'Écoute du besoin',
+    description: "Avant de coder, je prends le temps de comprendre ce que vous cherchez vraiment — pas seulement les specs, mais les objectifs.",
+  },
+  {
+    title: 'Attention au détail',
+    description: "L'interface que je livre ressemble à ce qu'on a pensé ensemble. Le détail compte : espacement, typographie, micro-interactions.",
+  },
+  {
+    title: 'Code maintenable',
+    description: "Un code que vous ou votre équipe pouvez reprendre et faire évoluer. Pas un code qu'il faut jeter au bout de six mois.",
+  },
+  {
+    title: 'Résultat orienté',
+    description: "Ce qui compte, c'est que ça fonctionne pour vous. Pas que ce soit techniquement impressionnant si ça ne répond pas à l'objectif.",
+  },
+];
+---
+
+<MainLayout
+  title="À propos — Axel, développeur freelance React & TypeScript"
+  description="Développeur freelance spécialisé en React et TypeScript, avec une sensibilité forte pour le design d'interface et l'expérience utilisateur."
+>
+  <!-- Hero -->
+  <section class="py-24 border-b border-border">
+    <Container>
+      <SectionLabel label="À propos" class="mb-8 reveal" />
+      <div class="grid md:grid-cols-2 gap-16 items-end">
+        <h1 class="reveal font-display font-semibold text-5xl md:text-6xl lg:text-7xl text-ink leading-[1.1]">
+          Axel —<br />
+          <span class="text-accent">développeur front-end.</span>
+        </h1>
+        <p class="reveal text-base text-ink-2 leading-relaxed">
+          Je suis développeur freelance spécialisé en React et TypeScript. Ce qui me distingue,
+          c'est que je pense les interfaces par l'expérience — pas seulement par le code.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Présentation -->
+  <section class="py-24 border-b border-border">
+    <Container>
+      <div class="grid md:grid-cols-[1fr_360px] gap-20">
+        <div class="space-y-6 reveal">
+          <h2 class="font-display font-semibold text-3xl text-ink">
+            Ma vision du web
+          </h2>
+          <div class="space-y-4 text-sm text-ink-2 leading-relaxed">
+            <p>
+              Le web est un médium à part entière. Un site, c'est une expérience — pas un document
+              mis en ligne. Je pense les interfaces à travers la perception, le mouvement, la
+              lisibilité et l'émotion.
+            </p>
+            <p>
+              Je cherche systématiquement à concilier design, clarté et conversion. Une interface
+              peut être belle et fonctionner. Elle peut être rapide et soignée. Elle peut être
+              technique et accessible.
+            </p>
+            <p>
+              Ce qui m'intéresse, c'est l'endroit où la technique et l'expérience humaine se
+              rencontrent — et c'est là que je travaille le mieux.
+            </p>
+          </div>
+        </div>
+
+        <!-- Quick facts -->
+        <div class="reveal border border-border p-8 h-fit">
+          <dl class="space-y-5">
+            {[
+              { label: 'Spécialité', value: 'React & TypeScript' },
+              { label: 'Basé à', value: 'France — Remote' },
+              { label: 'Mode', value: 'Freelance' },
+              { label: 'Disponibilité', value: 'Ouvert aux missions' },
+              { label: 'Langues', value: 'Français, Anglais' },
+            ].map((item, i) => (
+              <div class={i > 0 ? 'border-t border-border pt-5' : ''}>
+                <dt class="font-mono text-2xs uppercase tracking-widest text-ink-3 mb-1">{item.label}</dt>
+                <dd class="text-sm text-ink">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Compétences -->
+  <section class="py-24 border-b border-border">
+    <Container>
+      <div class="reveal mb-16">
+        <SectionLabel label="Compétences" class="mb-6" />
+        <h2 class="font-display font-semibold text-3xl text-ink">Stack & outils</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {skills.map((group, i) => (
+          <div class="reveal border border-border p-6" style={`transition-delay: ${i * 0.08}s`}>
+            <p class="font-mono text-2xs text-accent mb-5 uppercase tracking-widest">{group.category}</p>
+            <ul class="space-y-2.5">
+              {group.items.map((item) => (
+                <li class="flex items-center gap-2.5 text-sm text-ink-2">
+                  <span class="text-accent font-mono text-xs shrink-0">—</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Manière de travailler -->
+  <section class="py-24 border-b border-border">
+    <Container>
+      <div class="reveal mb-16">
+        <SectionLabel label="Méthode" class="mb-6" />
+        <h2 class="font-display font-semibold text-3xl text-ink">Ma manière de travailler</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        {values.map((v, i) => (
+          <div class="reveal border border-border p-8" style={`transition-delay: ${i * 0.08}s`}>
+            <span class="font-mono text-2xs text-accent mb-4 block">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="font-sans text-base font-medium text-ink mb-3">{v.title}</h3>
+            <p class="text-sm text-ink-2 leading-relaxed">{v.description}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24">
+    <Container>
+      <div class="reveal flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div>
+          <h2 class="font-display font-semibold text-3xl text-ink mb-3">
+            On travaille ensemble ?
+          </h2>
+          <p class="text-sm text-ink-2">Je suis disponible pour de nouvelles missions.</p>
+        </div>
+        <a
+          href="/contact"
+          class="shrink-0 inline-flex items-center gap-3 font-sans font-medium text-sm bg-accent text-bg px-8 py-4 hover:opacity-90 transition-opacity duration-150"
+        >
+          Me contacter
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </Container>
+  </section>
+</MainLayout>

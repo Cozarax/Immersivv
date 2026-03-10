@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from '@/layouts/MainLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import SectionLabel from '@/components/ui/SectionLabel.astro';
+import ProjectCard from '@/components/projects/ProjectCard.astro';
+
+const projects = await getCollection('projects');
+const sorted = projects.sort((a, b) => b.data.year - a.data.year);
+---
+
+<MainLayout
+  title="Projets — Axel, développeur freelance React & TypeScript"
+  description="Mes réalisations en développement front-end React/TypeScript, sites web et expériences interactives."
+>
+  <!-- Hero -->
+  <section class="py-24 border-b border-border">
+    <Container>
+      <SectionLabel label="Projets" class="mb-8 reveal" />
+      <div class="grid md:grid-cols-2 gap-12">
+        <h1 class="reveal font-display font-semibold text-5xl md:text-6xl text-ink leading-[1.1]">
+          Mes réalisations
+        </h1>
+        <p class="reveal text-base text-ink-2 leading-relaxed self-end">
+          Je ne me contente pas de coder une maquette. Chaque projet part d'un problème réel,
+          d'une contrainte ou d'un objectif et la solution technique en découle.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Projects list -->
+  <section class="py-16">
+    <Container>
+      <div class="flex flex-col">
+        {sorted.map((project, i) => (
+          <ProjectCard project={project} index={i} />
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 border-t border-border">
+    <Container>
+      <div class="reveal flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div>
+          <h2 class="font-display font-semibold text-3xl text-ink mb-2">
+            Vous avez un projet similaire ?
+          </h2>
+          <p class="text-sm text-ink-2">Je suis disponible pour de nouvelles missions.</p>
+        </div>
+        <a
+          href="/contact"
+          class="shrink-0 inline-flex items-center gap-3 font-sans font-medium text-sm bg-accent text-bg px-8 py-4 hover:opacity-90 transition-opacity duration-150"
+        >
+          Me contacter
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </Container>
+  </section>
+</MainLayout>

@@ -1,0 +1,36 @@
+---
+interface Props {
+  context: string;
+  objective: string;
+  problem: string;
+  solution: string;
+  result: string;
+}
+
+const { context, objective, problem, solution, result } = Astro.props;
+
+const blocks = [
+  { label: 'Contexte', content: context },
+  { label: 'Objectif', content: objective },
+  { label: 'Problème', content: problem },
+  { label: 'Solution', content: solution },
+  { label: 'Résultat', content: result },
+];
+---
+
+<div class="grid md:grid-cols-[200px_1fr] gap-px bg-border">
+  {blocks.map((block) => (
+    <div class="contents">
+      <div class="bg-bg p-8 flex items-start">
+        <span class="font-mono text-2xs uppercase tracking-widest text-ink-3">
+          {block.label}
+        </span>
+      </div>
+      <div class="bg-bg p-8">
+        <p class="text-sm text-ink-2 leading-relaxed">
+          {block.content}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>

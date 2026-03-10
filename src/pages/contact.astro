@@ -1,0 +1,37 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import ContactIntro from '@/components/contact/ContactIntro.astro';
+import ContactForm from '@/components/contact/ContactForm.tsx';
+import Faq from '@/components/contact/Faq.astro';
+---
+
+<MainLayout
+  title="Contact — Axel, développeur freelance React & TypeScript"
+  description="Décrivez-moi votre projet. Je vous reviens sous 48h pour voir si on peut travailler ensemble."
+>
+  <ContactIntro />
+
+  <!-- Form section -->
+  <section class="py-20">
+    <Container>
+      <div class="grid md:grid-cols-[1fr_480px] gap-16 items-start">
+        <div class="reveal">
+          <h2 class="font-display font-semibold text-3xl text-ink mb-3">
+            Votre projet
+          </h2>
+          <p class="text-sm text-ink-2 leading-relaxed max-w-[380px]">
+            Remplissez ce formulaire ou envoyez-moi un email directement. Pas de formulaire
+            pour les formulaires — juste les informations utiles pour un premier échange.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <ContactForm client:load />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <Faq />
+</MainLayout>

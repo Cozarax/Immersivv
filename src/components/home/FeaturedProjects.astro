@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import Container from '@/components/ui/Container.astro';
+import SectionLabel from '@/components/ui/SectionLabel.astro';
+
+const allProjects = await getCollection('projects');
+const featured = allProjects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => b.data.year - a.data.year)
+  .slice(0, 4);
+---
+
+<section class="py-28">
+  <Container>
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+      <div class="reveal">
+        <SectionLabel number="02" label="Projets" class="mb-6" />
+        <h2 class="font-display font-semibold text-4xl md:text-5xl text-ink leading-tight">
+          Quelques réalisations récentes
+        </h2>
+      </div>
+      <div class="reveal">
+        <a
+          href="/projets"
+          class="inline-flex items-center gap-2 font-mono text-2xs uppercase tracking-widest text-ink-2 hover:text-accent transition-colors duration-150"
+        >
+          Tous les projets
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+            <path d="M1 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      {featured.map((project, i) => (
+        <a
+          href={`/projets/${project.slug}`}
+          class="reveal group flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-border py-6 hover:bg-bg-2 px-4 -mx-4 transition-colors duration-150"
+          style={`transition-delay: ${i * 0.06}s`}
+        >
+          <div class="flex items-center gap-6 min-w-0">
+            <span class="font-mono text-xs text-accent shrink-0 w-8">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 class="font-display font-semibold text-lg text-ink group-hover:text-accent transition-colors duration-150 truncate">
+              {project.data.title}
+            </h3>
+          </div>
+          <div class="flex items-center gap-6 shrink-0 ml-14 sm:ml-0">
+            <div class="hidden sm:flex flex-wrap gap-1.5">
+              {project.data.stack.slice(0, 3).map((tech) => (
+                <span class="font-mono text-2xs text-ink-3 border border-border px-2 py-0.5">
+                  {tech}
+                </span>
+              ))}
+            </div>
+            <span class="font-mono text-xs text-ink-3">{project.data.year}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<div class="max-w-[1200px] mx-auto px-6 md:px-10">
+  <div class="border-t border-border"></div>
+</div>
