@@ -46,7 +46,7 @@ function TechTag({ label, active, onUserEnter, onUserLeave }: TechTagProps) {
       onHoverStart={onUserEnter}
       onHoverEnd={onUserLeave}
       className="inline-flex items-center font-mono text-xs px-3 py-1 cursor-default overflow-hidden"
-      animate={{ borderColor: active ? color : 'var(--border)' }}
+      animate={{ borderColor: active ? color : 'rgba(255,255,255,0.25)' }}
       style={{ borderWidth: 1, borderStyle: 'solid', borderRadius: 0 }}
       transition={{ layout: { duration: 0.25, ease: [0.32, 0.72, 0, 1] }, borderColor: { duration: 0.25 } }}
     >
@@ -67,7 +67,7 @@ function TechTag({ label, active, onUserEnter, onUserLeave }: TechTagProps) {
       </AnimatePresence>
 
       <motion.span
-        animate={{ color: active ? color : 'var(--ink-3)' }}
+        animate={{ color: active ? color : 'var(--ink)' }}
         transition={{ duration: 0.2 }}
       >
         {label}

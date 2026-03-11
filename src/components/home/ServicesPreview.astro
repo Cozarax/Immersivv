@@ -1,28 +1,43 @@
 ---
-import Container from '@/components/ui/Container.astro';
-import SectionLabel from '@/components/ui/SectionLabel.astro';
+import Container from "@/components/ui/Container.astro";
+import SectionLabel from "@/components/ui/SectionLabel.astro";
 
 const services = [
   {
-    number: '01',
-    title: 'Applications web & outils métier',
+    number: "01",
+    title: "Applications web & outils métier",
     description:
-      'Je conçois des applications web sur mesure : dashboards, back-offices et outils internes adaptés à vos besoins métier. L’objectif est de transformer vos processus en interfaces simples, performantes et évolutives.',
-    tags: ['Applications', 'Dashboards', 'Back-offices'],
+      "Je conçois des applications web sur mesure : dashboards, back-offices et outils internes adaptés à vos besoins métier. L’objectif est de transformer vos processus en interfaces simples, performantes et évolutives.",
+    tags: ["Applications","Dashboards","Back-offices"],
+    idealFor: [
+      "Vous gérez encore des processus manuels ou sur Excel",
+      "Vous avez besoin d’un outil interne adapté à votre activité",
+      "Vous voulez centraliser vos données et automatiser certaines tâches",
+    ],
   },
   {
-    number: '02',
-    title: 'Sites web stratégiques',
+    number: "02",
+    title: "Sites web stratégiques",
     description:
-      'Des sites conçus comme de véritables outils de crédibilité et de conversion. Chaque projet est pensé pour structurer votre message, rassurer vos partenaires et soutenir vos objectifs business.',
-    tags: ['Crédibilité', 'Conversion', 'Structure'],
+      "Des sites conçus comme de véritables outils de crédibilité et de conversion. Chaque projet est pensé pour structurer votre message, rassurer vos partenaires et soutenir vos objectifs business.",
+    tags: ["Crédibilité", "Conversion", "Structure"],
+    idealFor: [
+      "Votre activité nécessite de rassurer des partenaires ou investisseurs",
+      "Votre site actuel ne reflète pas la qualité de votre entreprise",
+      "Vous voulez un site clair, rapide et crédible",
+    ],
   },
   {
-    number: '03',
-    title: 'Interfaces interactives',
+    number: "03",
+    title: "Interfaces interactives",
     description:
-      'Des interfaces dynamiques et soignées qui améliorent l’expérience utilisateur et donnent du caractère à votre produit ou votre marque.',
-    tags: ['Animation', 'Interactions', 'Web avancé'],
+      "Des interfaces dynamiques et soignées qui améliorent l’expérience utilisateur et donnent du caractère à votre produit ou votre marque.",
+    tags: ["Animation", "Interactions", "Web avancé"],
+    idealFor: [
+      "Votre produit mérite une expérience utilisateur plus engageante",
+      "Vous souhaitez différencier votre marque par l’interface",
+      "Vous avez besoin d’interactions ou d’animations sur mesure",
+    ],
   },
 ];
 ---
@@ -39,7 +54,7 @@ const services = [
       <div class="reveal">
         <a
           href="/services"
-          class="inline-flex items-center gap-2 font-mono text-2xs uppercase tracking-widest text-ink-2 hover:text-accent transition-colors duration-150"
+          class="inline-flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-ink-2 hover:text-accent transition-colors duration-150"
         >
           Voir tous les services
           <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
@@ -59,12 +74,23 @@ const services = [
           <h3 class="font-display font-semibold text-xl text-ink mb-4 leading-tight">
             {service.title}
           </h3>
-          <p class="text-sm text-ink-2 leading-relaxed mb-6">
+          <p class="text-sm leading-relaxed mb-6">
             {service.description}
           </p>
-          <div class="flex flex-wrap gap-2">
+          <div class="border-t border-border pt-6 mb-6">
+            <p class="font-mono text-2xs text-accent uppercase tracking-widest mb-3">Idéal si</p>
+            <ul class="space-y-2">
+              {service.idealFor.map((item) => (
+                <li class="flex items-start gap-2.5 text-sm leading-relaxed">
+                  <span class="text-accent font-mono shrink-0 mt-0.5">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+           <div class="flex flex-wrap gap-2">
             {service.tags.map((tag) => (
-              <span class="font-mono text-2xs text-ink-3 border border-border px-2 py-1">
+              <span class="font-mono text-2xs text-ink-2 border border-border px-2 py-1">
                 {tag}
               </span>
             ))}

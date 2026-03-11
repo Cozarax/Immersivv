@@ -1,5 +1,6 @@
 ---
 const navLinks = [
+  { href: '/', label: 'Accueil' },
   { href: '/projets', label: 'Projets' },
   { href: '/services', label: 'Services' },
   { href: '/a-propos', label: 'À propos' },
@@ -19,7 +20,7 @@ const currentPath = Astro.url.pathname;
           href={link.href}
           class:list={[
             'font-sans text-sm transition-colors duration-150',
-            currentPath.startsWith(link.href)
+            (link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href))
               ? 'text-ink'
               : 'text-ink-2 hover:text-ink',
           ]}

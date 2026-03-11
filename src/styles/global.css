@@ -9,7 +9,7 @@
    ============================================ */
 :root {
   /* Couleurs de fond */
-  --bg: #08080A;
+  --bg: #111114;
   --bg-2: #0E0E11;
   --bg-3: #16161A;
   --bg-4: #880D1E;
@@ -44,9 +44,9 @@
    ============================================ */
 @layer utilities {
   /* Couleurs de fond */
-  .bg-bg    { background-color: rgba(8, 8, 10, 0.82); }
-  .bg-bg-2  { background-color: rgba(14, 14, 17, 0.88); }
-  .bg-bg-3  { background-color: rgba(22, 22, 26, 0.92); }
+  .bg-bg    { background-color: var(--bg); }
+  .bg-bg-2  { background-color: var(--bg-2); }
+  .bg-bg-3  { background-color: var(--bg-3); }
 
   /* Bordures */
   .border-border   { border-color: var(--border); }
@@ -123,14 +123,10 @@
 @layer components {
   .section-label {
     @apply font-mono text-2xs uppercase tracking-widest flex items-center gap-3;
-    color: var(--ink-3);
+    color: var(--ink);
   }
   .section-label::after {
-    content: '';
-    display: block;
-    width: 2rem;
-    height: 1px;
-    background-color: var(--ink-3);
+    content: none;
   }
 
   .fade-in {
