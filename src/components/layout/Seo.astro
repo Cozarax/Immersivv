@@ -3,15 +3,17 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  noindex?: boolean;
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, image, noindex = false } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://immersivv.fr');
 const socialImage = image ?? '/og-image.jpg';
 ---
 
 <title>{title}</title>
 <meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Open Graph -->

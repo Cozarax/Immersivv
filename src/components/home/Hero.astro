@@ -40,57 +40,48 @@ import TechTags from '@/components/ui/TechTags';
   <!-- Contenu -->
   <Container class="pt-32 pb-24 relative z-10">
     <div class="max-w-[860px]">
-      <!-- Availability badge -->
-      <div class="flex items-center gap-3 mb-10 fade-in" style="animation-delay: 0.1s">
-        <span class="relative flex h-2 w-2 shrink-0">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-        </span>
-        <span class="font-mono text-2xs uppercase tracking-widest text-ink-2">
-          Disponible — missions freelance
-        </span>
-      </div>
-
       <!-- H1 -->
       <h1
         class="font-display font-semibold text-5xl md:text-7xl leading-[1.1] mb-8 fade-in"
-        style="animation-delay: 0.2s"
+        style="animation-delay: 0.1s"
       >
-        Je conçois des interfaces web qui allient{' '}
-        <span class="text-accent">design</span>,<span class="text-accent"> UX</span> et <span class="text-accent">conversion</span>.
+        Je construis des{' '}
+        <span class="text-accent">applications web</span>{' '}
+        qui servent de vrais besoins métier.
       </h1>
 
       <!-- Subtitle -->
       <p
         class="text-base md:text-lg text-ink-2 leading-relaxed max-w-[560px] mb-12 fade-in"
-        style="animation-delay: 0.35s"
+        style="animation-delay: 0.25s"
       >
-        Développeur freelance spécialisé en React, TypeScript et Node.js. J'aide les marques,
-        studios et entreprises à créer des interfaces modernes, rapides et impactantes.
+        Développeur front-end et full-stack spécialisé en React et TypeScript — dashboards,
+        back-offices, outils internes et applications métier. Des interfaces utiles,
+        maintenables et pensées pour durer.
       </p>
 
       <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row items-start gap-4 mb-16 fade-in" style="animation-delay: 0.5s">
+      <div class="flex flex-col sm:flex-row items-start gap-4 mb-16 fade-in" style="animation-delay: 0.4s">
         <a
-          href="/contact"
+          href="/#projets"
           class="inline-flex items-center gap-3 font-sans font-medium text-sm bg-accent text-bg px-6 py-3.5 hover:opacity-90 transition-opacity duration-150"
         >
-          Parler de votre projet
+          Voir mes projets
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
         <a
-          href="/projets"
+          href="/#contact"
           class="inline-flex items-center gap-3 font-sans font-medium text-sm text-accent border border-accent px-6 py-3.5 hover:bg-accent hover:text-bg transition-all duration-150"
         >
-          Voir mes projets
+          Me contacter
         </a>
       </div>
 
       <!-- Tech tags -->
-      <div class="fade-in" style="animation-delay: 0.6s">
-        <TechTags client:only="react" tags={['React', 'TypeScript', 'Node.js']} />
+      <div class="fade-in" style="animation-delay: 0.55s">
+        <TechTags client:only="react" tags={['React', 'TypeScript', 'Node.js', 'Next.js', 'PostgreSQL']} />
       </div>
     </div>
   </Container>

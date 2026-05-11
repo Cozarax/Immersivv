@@ -8,12 +8,14 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  noindex?: boolean;
 }
 
 const {
-  title = 'Axel — Développeur Freelance React & TypeScript',
-  description = 'Développeur freelance spécialisé en React, TypeScript et Node.js. Je conçois des interfaces modernes, performantes et orientées expérience utilisateur.',
+  title = 'Axel — Développeur front-end React & TypeScript',
+  description = 'Développeur front-end et full-stack spécialisé en React et TypeScript. Je conçois des dashboards, back-offices et outils métier — des applications web qui servent de vrais besoins.',
   image,
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -23,7 +25,7 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <Seo title={title} description={description} image={image} />
+    <Seo title={title} description={description} image={image} noindex={noindex} />
   </head>
   <body class="bg-bg text-ink">
     <Header />
