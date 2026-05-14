@@ -4,6 +4,7 @@ import Hero from '@/components/home/Hero.astro';
 import FeaturedProjects from '@/components/home/FeaturedProjects.astro';
 import AboutPreview from '@/components/home/AboutPreview.astro';
 import ContactSection from '@/components/home/ContactSection.astro';
+import Grainient from '@/components/ui/Grainient';
 
 // Sections désactivées (conservées pour usage ultérieur) :
 // import ServicesPreview from '@/components/home/ServicesPreview.astro';
@@ -12,8 +13,40 @@ import ContactSection from '@/components/home/ContactSection.astro';
 ---
 
 <MainLayout>
-  <Hero />
-  <FeaturedProjects />
+  <!-- Wrapper commun : un seul Grainient couvre Hero + Projets -->
+  <div class="relative overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <Grainient
+        client:only="react"
+        color1="#000000"
+        color2="#4E148C"
+        color3="#9D8DF1"
+        timeSpeed={0.25}
+        colorBalance={0}
+        warpStrength={1}
+        warpFrequency={5}
+        warpSpeed={2}
+        warpAmplitude={50}
+        blendAngle={0}
+        blendSoftness={0.05}
+        rotationAmount={500}
+        noiseScale={2}
+        grainAmount={0.1}
+        grainScale={2}
+        grainAnimated={false}
+        contrast={1.5}
+        gamma={1}
+        saturation={1}
+        centerX={0}
+        centerY={0}
+        zoom={0.9}
+      />
+    </div>
+    <!-- Fondu entre la section Projets et À propos -->
+    <div class="absolute inset-x-0 bottom-0 h-48 z-[1]" style="background: linear-gradient(to bottom, transparent, var(--bg))"></div>
+    <Hero />
+    <FeaturedProjects />
+  </div>
   <AboutPreview />
   <ContactSection />
 </MainLayout>

@@ -2,53 +2,66 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import Container from '@/components/ui/Container.astro';
 import SectionLabel from '@/components/ui/SectionLabel.astro';
-import ServiceCard from '@/components/services/ServiceCard.astro';
 
 const services = [
   {
     number: '01',
-    title: 'Développement front-end React & TypeScript',
-    description:
-      "Je construis des interfaces modernes, performantes et maintenables. Du composant à l'architecture, mon approche combine rigueur technique et sens du détail UI.",
-    items: [
-      'Composants React typés (TypeScript)',
-      'Architecture front-end scalable',
-      'Optimisation des performances (Core Web Vitals)',
-      'Code documenté et maintenable',
-      'Intégration Figma / maquettes',
-      'Tests et qualité (ESLint, Prettier, tests unitaires)',
+    title: 'Applications web & outils métier sur mesure',
+    descriptions: [
+      "Je conçois des applications web adaptées à votre activité : dashboards, back-offices et outils internes permettant de gérer vos données, vos clients ou certains processus métier. L'objectif est de transformer des tâches dispersées ou manuelles en une interface claire, performante et facile à faire évoluer.",
+      'Ces applications peuvent par exemple servir à centraliser des informations, suivre des clients, gérer du contenu ou organiser certaines opérations internes.',
     ],
-    tags: ['React', 'TypeScript', 'Performance'],
+    canBuild: [
+      "dashboards de suivi d'activité",
+      'back-offices de gestion de contenu ou de données',
+      'outils internes pour équipes ou indépendants',
+      'interfaces pour gérer clients, projets ou leads',
+    ],
+    idealFor: [
+      'vous utilisez plusieurs outils ou fichiers pour gérer votre activité',
+      'certaines tâches sont encore manuelles ou dispersées',
+      "vous avez besoin d'un outil adapté à votre manière de travailler",
+    ],
+    tags: ['Applications', 'Dashboards', 'Back-offices', 'Outils internes', 'Automatisation', 'Process'],
   },
   {
     number: '02',
-    title: 'Sites web & landing pages',
-    description:
-      'Sites vitrines, landing pages, portfolios — des expériences web qui allient un design soigné à une structure pensée pour la conversion et la lisibilité.',
-    items: [
-      'Site vitrine sur mesure',
-      'Landing page orientée conversion',
-      'Design système cohérent',
-      'Responsive, accessible, rapide',
-      'SEO technique de base',
-      'Déploiement et mise en ligne',
+    title: 'Sites web stratégiques',
+    descriptions: [
+      "Je conçois des sites web pensés comme de véritables outils de crédibilité et de conversion. L'objectif est de présenter clairement votre activité, structurer votre message et créer une présence en ligne qui inspire confiance à vos clients, partenaires ou investisseurs.",
+      "Chaque site est conçu pour être lisible, rapide et facile à faire évoluer, avec une attention particulière portée à la structure de l'information et à l'expérience utilisateur.",
     ],
-    tags: ['UX', 'Design', 'Conversion'],
+    canBuild: [
+      'sites professionnels pour entreprises ou indépendants',
+      'sites B2B destinés à présenter une activité ou des réalisations',
+      'refonte de sites existants pour clarifier le positionnement',
+      'pages clés destinées à présenter un produit ou un service',
+    ],
+    idealFor: [
+      'votre site actuel ne reflète plus la qualité de votre activité',
+      "vous avez besoin d'une présence en ligne claire et crédible",
+      'vous souhaitez mieux présenter votre offre ou vos réalisations',
+    ],
+    tags: ['Sites web', 'Crédibilité', 'B2B', 'Refonte', 'UX'],
   },
   {
     number: '03',
-    title: 'Expériences interactives',
-    description:
-      'Animations, transitions, effets — pour des interfaces qui marquent les esprits et donnent à votre marque une présence mémorable sur le web.',
-    items: [
-      'Animations et transitions CSS / JS',
-      'Interactions sur mesure',
-      'Scroll storytelling',
-      'Effets avancés (parallaxe, morphing)',
-      'Expériences immersives web',
-      "Optimisation des performances d'animation",
+    title: 'Interfaces orientées produit',
+    descriptions: [
+      "Je conçois des interfaces pensées pour l'utilisation réelle d'un produit ou d'une application. L'objectif est de rendre les fonctionnalités claires, fluides et agréables à utiliser, en combinant structure d'interface, interactions et attention aux détails.",
     ],
-    tags: ['Animation', 'Interactions', 'Créatif'],
+    canBuild: [
+      'interfaces pour produits web ou applications',
+      "composants interactifs et systèmes d'interface",
+      "amélioration de l'ergonomie d'un produit existant",
+      "interactions et micro-animations utiles à l'expérience",
+    ],
+    idealFor: [
+      'votre produit web devient plus complexe et nécessite une interface claire',
+      'certaines fonctionnalités sont difficiles à comprendre pour les utilisateurs',
+      "vous souhaitez améliorer l'expérience et la fluidité de votre interface",
+    ],
+    tags: ['Produit', 'UI', 'Interactions', 'Composants', 'UX'],
   },
 ];
 
@@ -75,9 +88,9 @@ const audiences = [
           <span class="text-accent">pour vous.</span>
         </h1>
       </div>
-      <p class="reveal text-base text-ink-2 leading-relaxed max-w-[520px]">
-        Je traduis vos objectifs en interfaces concrètes — du front-end pur aux sites complets,
-        en passant par les expériences interactives qui sortent du lot.
+      <p class="reveal text-base text-ink-muted leading-relaxed max-w-[520px]">
+        Je conçois des applications web sur mesure pensées pour soutenir des objectifs réels :
+        organiser l’information, simplifier des processus et créer des expériences claires pour les utilisateurs.
       </p>
     </Container>
   </section>
@@ -87,30 +100,52 @@ const audiences = [
     <Container>
       <div class="flex flex-col gap-6">
         {services.map((service) => (
-          <ServiceCard {...service} />
-        ))}
-      </div>
+          <div class="reveal bg-bg-2 border border-border p-8 md:p-10 hover:border-accent transition-colors duration-150">
+            <div class="flex items-start justify-between mb-6">
+              <span class="font-mono text-xs text-accent">{service.number}</span>
+              <div class="flex flex-wrap gap-1.5 justify-end">
+                {service.tags.map((tag) => (
+                  <span class="font-mono text-xs text-ink border border-border px-2 py-1">{tag}</span>
+                ))}
+              </div>
+            </div>
 
-      <!-- Full-stack option -->
-      <div class="reveal mt-6 border border-accent/20 bg-accent/5 p-8 md:p-10">
-        <div class="flex items-start gap-4 mb-4">
-          <span class="font-mono text-2xs text-accent shrink-0 mt-0.5">+</span>
-          <div>
-            <h3 class="font-display font-semibold text-xl text-ink mb-2">
-              Option full-stack — Node.js
+            <h3 class="font-display font-semibold text-3xl md:text-4xl text-ink mb-4 leading-tight">
+              {service.title}
             </h3>
-            <p class="text-sm text-ink-2 leading-relaxed max-w-[520px]">
-              Si votre projet nécessite une couche back-end, je peux intervenir sur des APIs
-              Node.js simples, des formulaires, des intégrations tierces ou un back-office léger —
-              pour éviter de multiplier les interlocuteurs.
-            </p>
+
+            {service.descriptions.map((paragraph, i) => (
+              <p class={`text-base text-ink-muted leading-relaxed max-w-[640px] ${i < service.descriptions.length - 1 ? 'mb-4' : 'mb-8'}`}>
+                {paragraph}
+              </p>
+            ))}
+
+            <div class="grid md:grid-cols-2 gap-8 border-t border-border pt-8">
+              <div>
+                <p class="font-mono text-xs text-accent uppercase tracking-widest mb-4">Ce que je peux construire</p>
+                <ul class="space-y-2.5">
+                  {service.canBuild.map((item) => (
+                    <li class="flex items-start gap-3 text-base text-ink-muted">
+                      <span class="text-accent shrink-0 font-mono mt-0.5">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p class="font-mono text-xs text-accent uppercase tracking-widest mb-4">Idéal si</p>
+                <ul class="space-y-2.5">
+                  {service.idealFor.map((item) => (
+                    <li class="flex items-start gap-3 text-base text-ink-muted">
+                      <span class="text-accent shrink-0 font-mono mt-0.5">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="flex flex-wrap gap-1.5 mt-4 ml-7">
-          {['Node.js', 'REST API', 'Prisma / ORM', 'Auth', 'Back-office'].map((t) => (
-            <span class="font-mono text-2xs text-ink-3 border border-border px-2 py-1">{t}</span>
-          ))}
-        </div>
+        ))}
       </div>
     </Container>
   </section>
@@ -144,7 +179,7 @@ const audiences = [
           Un besoin en tête ?
         </h2>
         <p class="text-sm text-ink-2 leading-relaxed mb-8">
-          Décrivez-moi votre projet. Je vous reviens sous 48h pour voir si on peut travailler ensemble.
+          Décrivez-moi votre projet. Je vous reviens sous 12h pour voir si on peut travailler ensemble.
         </p>
         <a
           href="/contact"

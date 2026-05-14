@@ -3,11 +3,11 @@ interface Props {
   number: string;
   title: string;
   description: string;
-  items: string[];
+  idealFor: string[];
   tags: string[];
 }
 
-const { number, title, description, items, tags } = Astro.props;
+const { number, title, description, idealFor, tags } = Astro.props;
 ---
 
 <div class="reveal border border-border p-8 md:p-10 hover:border-accent transition-colors duration-150 group">
@@ -30,12 +30,15 @@ const { number, title, description, items, tags } = Astro.props;
     {description}
   </p>
 
-  <ul class="space-y-2.5">
-    {items.map((item) => (
-      <li class="flex items-start gap-3 text-sm text-ink-2">
-        <span class="text-accent shrink-0 font-mono mt-0.5">—</span>
-        <span>{item}</span>
-      </li>
-    ))}
-  </ul>
+  <div class="border-t border-border pt-6">
+    <p class="font-mono text-2xs text-accent uppercase tracking-widest mb-3">Idéal si</p>
+    <ul class="space-y-2.5">
+      {idealFor.map((item) => (
+        <li class="flex items-start gap-3 text-sm text-ink-2">
+          <span class="text-accent shrink-0 font-mono mt-0.5">•</span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
 </div>

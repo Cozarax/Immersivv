@@ -8,21 +8,45 @@
    DESIGN TOKENS
    ============================================ */
 :root {
-  /* Couleurs de fond */
-  --bg: #111114;
+  /* Couleurs de fond — actif */
+  /* --bg:   #111114;
   --bg-2: #0E0E11;
-  --bg-3: #16161A;
-  --bg-4: #880D1E;
-  --bg-5: #9D8DF1;  
+  --bg-3: #16161A; */
+
+  /* Thème A — Zinc neutre (Tailwind zinc, très propre) */
+  /* --bg:   #18181B; 
+   --bg-2: #1C1C1F; 
+   --bg-3: #222226; */
+
+  /* Thème B — Slate bleuté (GitHub Dark, cool/tech) */
+  /* --bg:   #0F1117; 
+  --bg-2: #13151E; 
+  --bg-3: #191C28; */
+
+  /* Thème C — Ardoise chaude (warm, s'harmonise avec #EEEBE6) */
+  /* --bg:   #16140F; 
+   --bg-2: #1C1914; 
+   --bg-3: #22201A; */
+
+  /* Thème D — Graphite pur (neutre absolu, minimaliste) */
+  /* --bg:   #141414; 
+   --bg-2: #1A1A1A; 
+   --bg-3: #202020; */
+
+  /* Thème E — Nuit profonde (presque noir, légèrement violet) */
+  --bg:   #0C0C10;
+  --bg-2: #18181B; /* zinc — cards */
+  --bg-3: #1C1C1F; /* zinc clair — hover / nested */
 
   /* Bordures */
   --border:    #1D1D22;
   --border-2:  #28282F;
 
   /* Texte */
-  --ink:       #EEEBE6;
-  --ink-2:     #878380;
-  --ink-3:     #46433F;
+  --ink:        #EEEBE6;
+  --ink-muted:  #B0ACA7;
+  --ink-2:      #878380;
+  --ink-3:      #46433F;
 
   /* Couleur principale */
   --accent:       #9ecd04;
@@ -51,11 +75,13 @@
   /* Bordures */
   .border-border   { border-color: var(--border); }
   .border-border-2 { border-color: var(--border-2); }
+  .border-ink-2    { border-color: var(--ink-2); }
 
   /* Texte */
-  .text-ink   { color: var(--ink); }
-  .text-ink-2 { color: var(--ink-2); }
-  .text-ink-3 { color: var(--ink-3); }
+  .text-ink       { color: var(--ink); }
+  .text-ink-muted { color: var(--ink-muted); }
+  .text-ink-2     { color: var(--ink-2); }
+  .text-ink-3     { color: var(--ink-3); }
 
   /* Accent */
   .text-accent         { color: var(--accent); }
@@ -151,6 +177,83 @@
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ============================================
+   PILL DISCOVER BUTTON (ProjectCard)
+   ============================================ */
+.btn-pill-discover {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.group:hover .btn-pill-discover {
+  background-color: var(--accent);
+  color: #08080A;
+}
+
+/* ============================================
+   GLASS CARD
+   ============================================ */
+.glass-card {
+  border-radius: 20px;
+  padding: 12px;
+  position: relative;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  border: 2px solid var(--accent);
+  transform: scale(0.92);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.glass-card:hover::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.glass-card-inner {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 13px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.glass-card-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  z-index: 1;
+}
+
+.glass-card-inner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), transparent, rgba(255, 255, 255, 0.3));
+  z-index: 1;
 }
 
 /* ============================================
