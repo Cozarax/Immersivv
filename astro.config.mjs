@@ -10,4 +10,7 @@ export default defineConfig({
     }),
   ],
   output: 'static',
+  server: {
+    host: true,
+  },
 });
