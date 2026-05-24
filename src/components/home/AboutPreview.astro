@@ -1,16 +1,21 @@
 ---
 import Container from '@/components/ui/Container.astro';
 import SectionLabel from '@/components/ui/SectionLabel.astro';
+import TechTags from '@/components/ui/TechTags';
 
-const skills = [
+const tags = [
   'React',
   'TypeScript',
   'Next.js',
   'Node.js',
-  'PostgreSQL / Prisma',
-  'REST / GraphQL',
+  'PostgreSQL',
+  'GraphQL',
   'Tailwind CSS',
   'Git',
+  'Prisma',
+  'Astro',
+  'Vite',
+  'Figma',
 ];
 ---
 
@@ -24,39 +29,33 @@ const skills = [
       <!-- Text -->
       <div class="reveal">
         <h2 class="font-display font-semibold text-3xl md:text-4xl text-ink leading-tight mb-8">
-          Je construis des interfaces avec intention.
+          Une petite présentation.
         </h2>
-        <div class="space-y-4 text-sm text-ink-2 leading-relaxed">
+        <div class="space-y-4 text-sm text-ink leading-relaxed">
           <p>
-            Développeur front-end et full-stack spécialisé en React et TypeScript, je travaille
-            principalement sur des applications métier — dashboards, outils internes, back-offices,
-            interfaces de données.
+            Détenteur d'un master chez Epitech Montpellier, architecte logiciel et développeur d'applications,
+            j'ai 2 années d'expérience en entreprise. Je travaille principalement sur des applications métier :
+            dashboards, outils internes, back-offices, interfaces de données. Mais j'aime aussi créer des applications web.
           </p>
           <p>
-            Ce qui m'intéresse, c'est l'endroit où la technique rencontre l'usage réel : des
-            interfaces qui permettent à des équipes de mieux travailler, pas seulement de regarder
-            de beaux chiffres.
+            Mon objectif dans la vie, c'est de contribuer à faire avancer l'humanité dans le bon sens.
+            Arrêtons les guerres et lançons-nous dans le voyage interstellaire, s'il vous plaît, merci.
+            À mon échelle, ce qui m'anime, c'est de réfléchir à des interfaces utiles et joliment designées,
+            pour offrir la meilleure expérience possible aux utilisateurs.
           </p>
           <p>
-            Je code proprement, je pense en composants, et j'ai suffisamment de sensibilité design
-            pour qu'une interface soit aussi agréable à utiliser qu'efficace à maintenir.
+            J'ai commencé à coder "à l'ancienne", à m'arracher les cheveux une demi-journée sur un point-virgule manquant,
+            et je me forme aujourd'hui en continu à Claude Code pour évoluer avec mon métier.
+            Un tournant majeur est en train de se dessiner dans le développement : je pense qu'écrire du code devient progressivement le travail de l'IA,
+            et que notre rôle se déplace vers celui de chef d'orchestre.
           </p>
         </div>
       </div>
 
-      <!-- Skills list -->
+      <!-- TechTags -->
       <div class="reveal">
-        <div class="border border-border p-8">
-          <p class="section-label mb-8">Stack principale</p>
-          <ul class="space-y-3">
-            {skills.map((skill) => (
-              <li class="flex items-center gap-3 text-sm text-ink-2">
-                <span class="text-accent shrink-0 font-mono text-xs">—</span>
-                <span>{skill}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <p class="section-label mb-8">Stack principale</p>
+        <TechTags client:visible tags={tags} />
       </div>
     </div>
   </Container>
