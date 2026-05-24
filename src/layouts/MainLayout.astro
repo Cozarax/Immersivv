@@ -34,19 +34,35 @@ const {
     </main>
     <Footer />
     <script>
+      // Scroll reveal — desktop + mobile
       const reveals = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver(
+      const revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
+              revealObserver.unobserve(entry.target);
             }
           });
         },
         { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
       );
-      reveals.forEach((el) => observer.observe(el));
+      reveals.forEach((el) => revealObserver.observe(el));
+
+      // Hover → scroll sur touch devices (remplace :hover sur les glass cards)
+      const isTouch = window.matchMedia('(hover: none)').matches;
+      if (isTouch) {
+        const cards = document.querySelectorAll('.glass-card');
+        const cardObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              entry.target.classList.toggle('in-view', entry.isIntersecting);
+            });
+          },
+          { threshold: 0.7 }
+        );
+        cards.forEach((card) => cardObserver.observe(card));
+      }
     </script>
   </body>
 </html>
