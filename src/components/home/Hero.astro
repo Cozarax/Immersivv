@@ -22,13 +22,13 @@ import HeroRotatingText from '@/components/home/HeroRotatingText';
         <span class="text-ink-2">Je suis</span>  Axel Cozar
       </h1>
 
-      <!-- Rôle — avec le RotatingText, mb-16 pour compenser la hauteur absolue du badge -->
-      <div class="mb-16 fade-in" style="animation-delay: 0.25s">
-        <p class="font-display font-semibold text-3xl md:text-7xl text-ink leading-[1.2]">
+      <!-- Rôle -->
+      <div class="mb-10 md:mb-16 fade-in" style="animation-delay: 0.25s">
+        <p class="font-display font-semibold text-5xl md:text-7xl text-ink leading-[1.2]">
           <span class="relative inline-block">
             Développeur
-            <span class="absolute top-1/2 -translate-y-1/2 left-[calc(100%+1rem)]">
-              <HeroRotatingText client:only="react" />
+            <span class="block mt-1 md:absolute md:mt-0 md:top-1/2 md:-translate-y-1/2 md:left-[calc(100%+1rem)]">
+              <HeroRotatingText client:only="react" showBorder={false} className="px-0 py-0 md:px-4 md:py-3" />
             </span>
           </span>
         </p>
