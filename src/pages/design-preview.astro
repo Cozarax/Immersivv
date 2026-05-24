@@ -1,0 +1,158 @@
+---
+// Temporary design preview — delete after review
+---
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propositions — Quick Facts Box</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #08080A; --bg-2: #0E0E11; --bg-3: #16161A;
+      --accent: #9ecd04; --accent-l: #b8e020; --accent-d: #6a8a02;
+      --ink: #EEEBE6; --ink-2: #878380; --ink-3: #46433F;
+      --border: #1D1D22; --border-2: #28282F;
+    }
+    body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; min-height: 100vh; padding: 48px 32px 80px; }
+    .page-header { margin-bottom: 56px; }
+    .page-header p { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .page-header h1 { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 22px; color: var(--ink); margin-bottom: 8px; }
+    .page-header span { font-size: 13px; color: var(--ink-2); }
+
+    .proposals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+    .proposal-wrap { background: var(--bg); padding: 40px 28px 48px; }
+    .proposal-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+    .proposal-title { font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 14px; color: var(--ink-2); margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+
+    .mock-context { margin-bottom: 28px; opacity: .25; pointer-events: none; user-select: none; }
+    .mock-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
+    .mock-h2 { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 26px; line-height: 1.15; color: var(--ink); }
+    .mock-h2 .acc { color: var(--accent); }
+    .mock-p { margin-top: 12px; font-size: 12px; color: var(--ink-2); line-height: 1.7; }
+
+    /* ── A — Terminal Card ── */
+    .terminal-card { background: var(--bg-3); border: 1px solid var(--border-2); border-radius: 6px; overflow: hidden; transition: border-color .25s, box-shadow .25s; }
+    .terminal-card:hover { border-color: var(--accent-d); box-shadow: 0 0 0 1px var(--accent-d), 0 0 24px -4px rgba(158,205,4,.12); }
+    .terminal-topbar { background: #1C1C20; border-bottom: 1px solid var(--border-2); padding: 10px 14px; display: flex; align-items: center; gap: 12px; }
+    .terminal-dots { display: flex; gap: 6px; }
+    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #FF5F57; } .dot-y { background: #FEBC2E; } .dot-g { background: #28C840; }
+    .terminal-filename { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink-3); letter-spacing: .04em; }
+    .terminal-body { padding: 20px 18px 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.9; }
+    .t-open, .t-close { color: var(--ink-3); }
+    .t-row { display: flex; flex-wrap: wrap; padding-left: 16px; }
+    .t-key { color: var(--accent); } .t-colon { color: var(--ink-3); margin: 0 4px; } .t-val { color: #ce9178; } .t-comma { color: var(--ink-3); }
+    .t-cursor { display: inline-block; width: 7px; height: 13px; background: var(--accent); vertical-align: text-bottom; opacity: 0; }
+    .terminal-card:hover .t-cursor { animation: blink .9s step-start infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ── B — Stat Pills ── */
+    .pills-wrap { display: flex; flex-direction: column; gap: 6px; }
+    .pill { display: flex; align-items: stretch; background: var(--bg-2); border: 1px solid var(--border); border-left: 2px solid var(--accent-d); transition: transform .18s cubic-bezier(.34,1.56,.64,1), border-left-color .18s, box-shadow .18s, background .18s; cursor: default; }
+    .pill:hover { transform: translateX(5px); border-left-color: var(--accent); background: #121215; box-shadow: -4px 0 12px -2px rgba(158,205,4,.15); }
+    .pill-label-wrap { padding: 10px 12px; display: flex; align-items: center; gap: 6px; min-width: 116px; border-right: 1px solid var(--border); }
+    .pill-dot { font-size: 10px; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+    .pill-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+    .pill:hover .pill-label { color: var(--ink-2); }
+    .pill-value { padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ink); display: flex; align-items: center; }
+    .pill.avail .pill-value { color: var(--accent); font-weight: 500; }
+
+    /* ── C — Neon Grid Card ── */
+    .neon-card { background: var(--bg-2); background-image: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(255,255,255,.022) 27px, rgba(255,255,255,.022) 28px), repeating-linear-gradient(90deg, transparent, transparent 27px, rgba(255,255,255,.018) 27px, rgba(255,255,255,.018) 28px); border: 1px solid var(--border-2); border-top: none; overflow: hidden; transition: box-shadow .3s; }
+    .neon-card:hover { box-shadow: 0 4px 40px -8px rgba(158,205,4,.14), 0 1px 0 0 var(--accent-d); background-image: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(158,205,4,.05) 27px, rgba(158,205,4,.05) 28px), repeating-linear-gradient(90deg, transparent, transparent 27px, rgba(158,205,4,.04) 27px, rgba(158,205,4,.04) 28px); }
+    .neon-bar { height: 3px; background: var(--accent); display: block; transition: box-shadow .3s; }
+    .neon-card:hover .neon-bar { box-shadow: 0 0 16px 2px rgba(158,205,4,.55), 0 0 40px 4px rgba(158,205,4,.18); }
+    .neon-row { display: flex; align-items: center; justify-content: space-between; padding: 13px 18px; border-bottom: 1px solid var(--border); gap: 12px; }
+    .neon-row:last-child { border-bottom: none; }
+    .neon-row-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); flex-shrink: 0; }
+    .neon-row-value { font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 13px; color: var(--ink); text-align: right; }
+    .neon-row.avail .neon-row-value { display: flex; align-items: center; gap: 7px; color: var(--accent); }
+    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); position: relative; flex-shrink: 0; }
+    .pulse-dot::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: var(--accent); opacity: .3; animation: pulse 1.8s ease-out infinite; }
+    @keyframes pulse { 0%{transform:scale(.8);opacity:.35} 60%{transform:scale(1.8);opacity:0} 100%{transform:scale(.8);opacity:0} }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <p>Design preview</p>
+    <h1>Propositions — Encart Quick Facts</h1>
+    <span>Page /a-propos · Survolez chaque composant pour voir les états hover</span>
+  </div>
+
+  <div class="proposals">
+
+    <!-- A — Terminal Card -->
+    <div class="proposal-wrap">
+      <div class="proposal-label">Proposition A</div>
+      <div class="proposal-title">Terminal Card</div>
+      <div class="mock-context">
+        <div class="mock-label">À propos</div>
+        <div class="mock-h2">Axel —<br><span class="acc">développeur front-end.</span></div>
+        <p class="mock-p">Je suis développeur freelance spécialisé en React et TypeScript.</p>
+      </div>
+      <div class="terminal-card">
+        <div class="terminal-topbar">
+          <div class="terminal-dots">
+            <div class="terminal-dot dot-r"></div>
+            <div class="terminal-dot dot-y"></div>
+            <div class="terminal-dot dot-g"></div>
+          </div>
+          <span class="terminal-filename">about.json</span>
+        </div>
+        <div class="terminal-body">
+          <div class="t-open">{</div>
+          <div class="t-row"><span class="t-key">"spécialité"</span><span class="t-colon">:</span><span class="t-val">"React & TypeScript"</span><span class="t-comma">,</span></div>
+          <div class="t-row"><span class="t-key">"basé_à"</span><span class="t-colon">:</span><span class="t-val">"France — Remote"</span><span class="t-comma">,</span></div>
+          <div class="t-row"><span class="t-key">"mode"</span><span class="t-colon">:</span><span class="t-val">"Freelance"</span><span class="t-comma">,</span></div>
+          <div class="t-row"><span class="t-key">"disponibilité"</span><span class="t-colon">:</span><span class="t-val">"Ouvert aux missions"</span><span class="t-comma">,</span></div>
+          <div class="t-row"><span class="t-key">"langues"</span><span class="t-colon">:</span><span class="t-val">"Français, Anglais"</span></div>
+          <div class="t-close">}<span class="t-cursor"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B — Stat Pills -->
+    <div class="proposal-wrap">
+      <div class="proposal-label">Proposition B</div>
+      <div class="proposal-title">Stat Pills</div>
+      <div class="mock-context">
+        <div class="mock-label">À propos</div>
+        <div class="mock-h2">Axel —<br><span class="acc">développeur front-end.</span></div>
+        <p class="mock-p">Je suis développeur freelance spécialisé en React et TypeScript.</p>
+      </div>
+      <div class="pills-wrap">
+        <div class="pill"><div class="pill-label-wrap"><span class="pill-dot">•</span><span class="pill-label">Spécialité</span></div><div class="pill-value">React & TypeScript</div></div>
+        <div class="pill"><div class="pill-label-wrap"><span class="pill-dot">•</span><span class="pill-label">Basé à</span></div><div class="pill-value">France — Remote</div></div>
+        <div class="pill"><div class="pill-label-wrap"><span class="pill-dot">•</span><span class="pill-label">Mode</span></div><div class="pill-value">Freelance</div></div>
+        <div class="pill avail"><div class="pill-label-wrap"><span class="pill-dot">•</span><span class="pill-label">Disponibilité</span></div><div class="pill-value">Ouvert aux missions</div></div>
+        <div class="pill"><div class="pill-label-wrap"><span class="pill-dot">•</span><span class="pill-label">Langues</span></div><div class="pill-value">Français, Anglais</div></div>
+      </div>
+    </div>
+
+    <!-- C — Neon Grid Card -->
+    <div class="proposal-wrap">
+      <div class="proposal-label">Proposition C</div>
+      <div class="proposal-title">Neon Grid Card</div>
+      <div class="mock-context">
+        <div class="mock-label">À propos</div>
+        <div class="mock-h2">Axel —<br><span class="acc">développeur front-end.</span></div>
+        <p class="mock-p">Je suis développeur freelance spécialisé en React et TypeScript.</p>
+      </div>
+      <div class="neon-card">
+        <span class="neon-bar"></span>
+        <div class="neon-row"><span class="neon-row-label">Spécialité</span><span class="neon-row-value">React & TypeScript</span></div>
+        <div class="neon-row"><span class="neon-row-label">Basé à</span><span class="neon-row-value">France — Remote</span></div>
+        <div class="neon-row"><span class="neon-row-label">Mode</span><span class="neon-row-value">Freelance</span></div>
+        <div class="neon-row avail"><span class="neon-row-label">Disponibilité</span><span class="neon-row-value"><span class="pulse-dot"></span>Ouvert aux missions</span></div>
+        <div class="neon-row"><span class="neon-row-label">Langues</span><span class="neon-row-value">Français, Anglais</span></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
